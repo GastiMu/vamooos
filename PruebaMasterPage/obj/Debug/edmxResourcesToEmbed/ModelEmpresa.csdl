@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmpresaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CentroCosto">
+    <Key>
+      <PropertyRef Name="IdCentroCosto" />
+    </Key>
+    <Property Name="IdCentroCosto" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Baja" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Personal" Relationship="Self.FK__Personal__Centro__4CA06362" FromRole="CentroCosto" ToRole="Personal" />
+  </EntityType>
+  <EntityType Name="Localidades">
+    <Key>
+      <PropertyRef Name="IdLocalidad" />
+    </Key>
+    <Property Name="IdLocalidad" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Baja" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Personal" Relationship="Self.FK__Personal__Locali__4BAC3F29" FromRole="Localidades" ToRole="Personal" />
+  </EntityType>
+  <EntityType Name="Personal">
+    <Key>
+      <PropertyRef Name="IdPersonal" />
+    </Key>
+    <Property Name="IdPersonal" Type="Int32" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Dni" Type="Int32" Nullable="false" />
+    <Property Name="CentroDeCosto" Type="Int32" />
+    <Property Name="Localidad" Type="Int32" />
+    <Property Name="Baja" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CentroCosto" Relationship="Self.FK__Personal__Centro__4CA06362" FromRole="Personal" ToRole="CentroCosto" />
+    <NavigationProperty Name="Localidades" Relationship="Self.FK__Personal__Locali__4BAC3F29" FromRole="Personal" ToRole="Localidades" />
+  </EntityType>
+  <Association Name="FK__Personal__Centro__4CA06362">
+    <End Role="CentroCosto" Type="Self.CentroCosto" Multiplicity="0..1" />
+    <End Role="Personal" Type="Self.Personal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CentroCosto">
+        <PropertyRef Name="IdCentroCosto" />
+      </Principal>
+      <Dependent Role="Personal">
+        <PropertyRef Name="CentroDeCosto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Personal__Locali__4BAC3F29">
+    <End Role="Localidades" Type="Self.Localidades" Multiplicity="0..1" />
+    <End Role="Personal" Type="Self.Personal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidades">
+        <PropertyRef Name="IdLocalidad" />
+      </Principal>
+      <Dependent Role="Personal">
+        <PropertyRef Name="Localidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EmpresaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CentroCosto" EntityType="Self.CentroCosto" />
+    <EntitySet Name="Localidades" EntityType="Self.Localidades" />
+    <EntitySet Name="Personal" EntityType="Self.Personal" />
+    <AssociationSet Name="FK__Personal__Centro__4CA06362" Association="Self.FK__Personal__Centro__4CA06362">
+      <End Role="CentroCosto" EntitySet="CentroCosto" />
+      <End Role="Personal" EntitySet="Personal" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Personal__Locali__4BAC3F29" Association="Self.FK__Personal__Locali__4BAC3F29">
+      <End Role="Localidades" EntitySet="Localidades" />
+      <End Role="Personal" EntitySet="Personal" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

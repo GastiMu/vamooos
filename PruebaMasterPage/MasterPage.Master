@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="PruebaMasterPage.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta charset=utf-8"/<
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+    <title>Pruebas con MasterPage</title>
+    <asp:ContentPlaceHolder ID="header" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <%//El titulo se replica en todas las paginas porque esta fuera del placeholder CONTENIDO %>
+    <h1>Titulo fuera del contenido de WebForm</h1>
+    <ul class="nav nav-tabs">
+        <li role="presentation" runat="server" id="link1"> <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">DEFAULT</asp:HyperLink></li>
+        <li role="presentation" runat="server" id="link2"> <asp:HyperLink runat="server" NavigateUrl="~/Default2.aspx">DEFAULT2</asp:HyperLink></li>
+        
+    </ul>
+    <asp:ContentPlaceHolder ID="contenido" runat="server">
+      <%//Todo lo de aqui dentro varia porque lo REDEFINE cada webForm de una manera %>
+        <h1>este mensaje se deberia reemplazar en cada webform</h1>
+    </asp:ContentPlaceHolder>
+</body>
+</html>

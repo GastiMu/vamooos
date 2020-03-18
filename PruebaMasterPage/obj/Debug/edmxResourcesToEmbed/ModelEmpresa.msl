@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EmpresaModelStoreContainer" CdmEntityContainer="EmpresaEntities">
+    <EntitySetMapping Name="CentroCosto">
+      <EntityTypeMapping TypeName="EmpresaModel.CentroCosto">
+        <MappingFragment StoreEntitySet="CentroCosto">
+          <ScalarProperty Name="IdCentroCosto" ColumnName="IdCentroCosto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Baja" ColumnName="Baja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Localidades">
+      <EntityTypeMapping TypeName="EmpresaModel.Localidades">
+        <MappingFragment StoreEntitySet="Localidades">
+          <ScalarProperty Name="IdLocalidad" ColumnName="IdLocalidad" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Baja" ColumnName="Baja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personal">
+      <EntityTypeMapping TypeName="EmpresaModel.Personal">
+        <MappingFragment StoreEntitySet="Personal">
+          <ScalarProperty Name="IdPersonal" ColumnName="IdPersonal" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Dni" ColumnName="Dni" />
+          <ScalarProperty Name="CentroDeCosto" ColumnName="CentroDeCosto" />
+          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+          <ScalarProperty Name="Baja" ColumnName="Baja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

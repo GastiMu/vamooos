@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmpresaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CentroCosto">
+    <Key>
+      <PropertyRef Name="IdCentroCosto" />
+    </Key>
+    <Property Name="IdCentroCosto" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Baja" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Localidades">
+    <Key>
+      <PropertyRef Name="IdLocalidad" />
+    </Key>
+    <Property Name="IdLocalidad" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Baja" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personal">
+    <Key>
+      <PropertyRef Name="IdPersonal" />
+    </Key>
+    <Property Name="IdPersonal" Type="int" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Dni" Type="int" Nullable="false" />
+    <Property Name="CentroDeCosto" Type="int" />
+    <Property Name="Localidad" Type="int" />
+    <Property Name="Baja" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Personal__Centro__4CA06362">
+    <End Role="CentroCosto" Type="Self.CentroCosto" Multiplicity="0..1" />
+    <End Role="Personal" Type="Self.Personal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CentroCosto">
+        <PropertyRef Name="IdCentroCosto" />
+      </Principal>
+      <Dependent Role="Personal">
+        <PropertyRef Name="CentroDeCosto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Personal__Locali__4BAC3F29">
+    <End Role="Localidades" Type="Self.Localidades" Multiplicity="0..1" />
+    <End Role="Personal" Type="Self.Personal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Localidades">
+        <PropertyRef Name="IdLocalidad" />
+      </Principal>
+      <Dependent Role="Personal">
+        <PropertyRef Name="Localidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EmpresaModelStoreContainer">
+    <EntitySet Name="CentroCosto" EntityType="Self.CentroCosto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Localidades" EntityType="Self.Localidades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personal" EntityType="Self.Personal" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Personal__Centro__4CA06362" Association="Self.FK__Personal__Centro__4CA06362">
+      <End Role="CentroCosto" EntitySet="CentroCosto" />
+      <End Role="Personal" EntitySet="Personal" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Personal__Locali__4BAC3F29" Association="Self.FK__Personal__Locali__4BAC3F29">
+      <End Role="Localidades" EntitySet="Localidades" />
+      <End Role="Personal" EntitySet="Personal" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
